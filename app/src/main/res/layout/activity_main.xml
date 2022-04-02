@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+  <variable
+      name="cartmodel"
+      type="com.qbitscience.cartview_databinding_android.CartViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context=".CartActivity">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="15dp">
+
+                <Button
+                    android:id="@+id/plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:background="#009688"
+                    android:text="+"
+                    android:onClick="@{()->cartmodel.plusCart()}"
+                    android:textAlignment="center"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/value"
+                    app:layout_constraintEnd_toStartOf="@+id/value"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/value"
+                    app:layout_constraintVertical_bias="1.0" />
+
+
+                <Button
+                    android:id="@+id/minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#009688"
+                    android:text="-"
+                    android:onClick="@{()->cartmodel.minusCart()}"
+                    android:textSize="40sp"
+                    app:disableifmin="@{cartmodel.cartValue}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:background="#C8E6E3"
+                    android:text="@{Integer.toString(cartmodel.cartValue)}"
+                    android:textSize="35sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/minus"
+                    app:layout_constraintEnd_toStartOf="@+id/minus"
+                    app:layout_constraintTop_toTopOf="@+id/minus"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="199dp"
+                    android:layout_height="173dp"
+                    android:src="@drawable/ic_baseline_shopping_cart_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.506"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/value"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/buyNow"
+
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="84dp"
+            android:background="#E1480B"
+            android:padding="10dp"
+            android:text="Buy Now"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            app:buyDisable="@{cartmodel.cartValue}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.532"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
